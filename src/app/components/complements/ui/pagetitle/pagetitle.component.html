@@ -1,0 +1,24 @@
+<!-- breadcrumb item -->
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+			<h4 class="mb-0 font-size-18 text-center"><i class="fat fa-gear"></i> {{ title }}</h4>
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					@for (item of breadcrumbItems; track $index) {
+						<ng-container>
+							@if (item.active) {
+								<li class="breadcrumb-item active">{{ item.label }}
+								</li>
+							} @else {
+								<li class="breadcrumb-item">
+									<a [routerLink]="item.route">{{ item.label }}</a>
+								</li>
+							}
+						</ng-container>
+					}
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>

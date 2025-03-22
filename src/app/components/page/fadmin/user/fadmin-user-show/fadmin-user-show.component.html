@@ -1,0 +1,58 @@
+<app-loader></app-loader>
+<div class="card p-4">
+	<div class="container-fluid">
+		<app-page-title [title]="title" [breadcrumbItems]="breadCrumbItems"/>
+		<form [formGroup]="form" (ngSubmit)="update()">
+			<div class="row g-4 mb-4">
+				<div class="col-xs-6 col-sm-3">
+					<div class="form-floating">
+						<input type="text" formControlName="name" class="form-control" id="name" AlfaNumeric
+							placeholder="Nombres" autocomplete="new-password"
+							[ngClass]="{'is-invalid': (form.get('name').dirty || !form.get('name').untouched) && form.get('name').errors !== null, 'is-valid': form.get('name').errors === null}">
+						<label for="name">Nombres</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					<div class="form-floating">
+						<input type="text" formControlName="surname" class="form-control" id="surname" AlfaNumeric
+							placeholder="Apellidos" autocomplete="new-password"
+							[ngClass]="{'is-invalid': (form.get('surname').dirty || !form.get('surname').untouched) && form.get('surname').errors !== null, 'is-valid': form.get('surname').errors === null}">
+						<label for="surname">Apellidos</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					<div class="form-floating">
+						<input type="email" formControlName="email" class="form-control" id="email" placeholder="Correo"
+							autocomplete="new-password"
+							[ngClass]="{'is-invalid': (form.get('email').dirty || !form.get('email').untouched) && form.get('email').errors !== null, 'is-valid': form.get('email').errors === null}">
+						<label for="email">Correo</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					<div class="form-floating">
+						<input type="password" formControlName="password" class="form-control" id="password"
+							AlfaNumeric placeholder="Contraseña" autocomplete="new-password"
+							[ngClass]="{'is-invalid': (form.get('password').dirty || !form.get('password').untouched) && form.get('password').errors !== null, 'is-valid': form.get('password').errors === null}">
+						<label for="password">Contraseña</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-auto">
+					<div class="mb-4">
+						<button class="btn btn-success mr-2" type="submit" [disabled]="form.invalid">
+							Guardar
+						</button>
+					</div>
+				</div>
+				<div class="col-auto">
+					<div class="mb-4">
+						<button class="btn btn-secondary" type="button" [routerLink]="['/dashboard/user']">
+							Cancelar
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

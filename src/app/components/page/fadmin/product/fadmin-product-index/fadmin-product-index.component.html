@@ -1,0 +1,64 @@
+<app-loader></app-loader>
+<div class="card p-4">
+	<div class="container-fluid">
+		<app-page-title [title]="title" [breadcrumbItems]="breadCrumbItems"/>
+		<div class="row">
+			<div class="col-12 text-end">
+				<div class="mb-4">
+					<button class="btn btn-success btn-rounded me-2" type="button"
+						(click)="reload()">
+						<i class="fas fa-sync"></i> Recargar
+					</button>
+					<button class="btn btn-info btn-rounded me-2 pe-4" type="button"
+						[routerLink]="['/dashboard/product/create']">
+						<i class="fas fa-plus-circle"></i> Crear
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<table datatable [dtOptions]="dtOptions" class="table table-bordered table-hover" width="100%" *ngIf="show">
+				<thead class="person-edited-title">
+				<tr>
+					<th class="text-center" style="vertical-align: middle;">ID</th>
+					<th class="text-center" style="vertical-align: middle;">Nombre</th>
+					<th class="text-center" style="vertical-align: middle;">Código</th>
+					<th class="text-center" style="vertical-align: middle;">Precio</th>
+					<th class="text-center all" style="vertical-align: middle;">Ver</th>
+				</tr>
+				</thead>
+				<tbody>
+					@for (item of items; track item.id) {
+						<tr>
+							<td class="text-center">{{ item.id }}</td>
+							<td class="text-center">{{ item.name }}</td>
+							<td class="text-center">{{ item.code }}</td>
+							<td class="text-center">{{ item.price }}</td>
+							<td class="text-center">
+								<div class="btn-group" dropdown>
+									<button id="button-basic-{{item.id}}" dropdownToggle type="button"
+										aria-controls="dropdown-basic" class="btn btn-primary dropdown-toggle">
+										<i class="fas fa-angle-double-down"></i>
+									</button>
+									<ul id="dropdown-basic-{{item.id}}" *dropdownMenu aria-labelledby="button-basic"
+										class="dropdown-menu dropdown-menu-right" role="menu">
+										<li role="menuitem">
+											<a class="dropdown-item"
+												[routerLink]="['/dashboard/product/show', item.id]">Detalle
+											</a>
+										</li>
+										<li role="menuitem">
+											<button class="dropdown-item" type="button"
+												(click)="delete(item.id)">Eliminar
+											</button>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

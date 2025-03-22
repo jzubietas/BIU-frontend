@@ -1,0 +1,50 @@
+<app-loader></app-loader>
+<div class="card p-4">
+	<div class="container-fluid">
+		<app-page-title [title]="title" [breadcrumbItems]="breadCrumbItems"/>
+		<form [formGroup]="form" (ngSubmit)="update()">
+			<div class="row g-4 mb-4">
+				<div class="col-xs-12 col-sm-4">
+					<div class="form-floating">
+						<input type="text" formControlName="name" class="form-control" id="name" AlfaNumeric
+							placeholder="Nombres" autocomplete="new-password" onlyNumber
+							[ngClass]="{'is-invalid': (form.get('name').dirty || !form.get('name').untouched) && form.get('name').errors !== null, 'is-valid': form.get('name').errors === null}">
+						<label for="name">Nombres</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div class="form-floating">
+						<input type="number" formControlName="code" class="form-control" id="code" onlyNumber
+							placeholder="Código" autocomplete="new-password"
+							[ngClass]="{'is-invalid': (form.get('code').dirty || !form.get('code').untouched) && form.get('code').errors !== null, 'is-valid': form.get('code').errors === null}">
+						<label for="code">Código</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div class="form-floating">
+						<input type="text" formControlName="price" class="form-control" id="price" placeholder="Precio"
+							autocomplete="new-password" DecimalOnly
+							[ngClass]="{'is-invalid': (form.get('price').dirty || !form.get('price').untouched) && form.get('price').errors !== null, 'is-valid': form.get('price').errors === null}">
+						<label for="price">Precio</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-auto">
+					<div class="mb-4">
+						<button class="btn btn-success mr-2" type="submit" [disabled]="form.invalid">
+							Guardar
+						</button>
+					</div>
+				</div>
+				<div class="col-auto">
+					<div class="mb-4">
+						<button class="btn btn-secondary" type="button" [routerLink]="['/dashboard/product']">
+							Cancelar
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
